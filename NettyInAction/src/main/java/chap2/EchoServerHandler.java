@@ -1,4 +1,4 @@
-package com.cjg.abc.NettyInAction;
+package chap2;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

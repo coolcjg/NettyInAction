@@ -1,4 +1,4 @@
-package com.cjg.abc.NettyInAction;
+package chap1;
 
 import java.net.InetSocketAddress;
 import java.nio.charset.Charset;
@@ -24,7 +24,7 @@ public class ConnectExample {
         ChannelFuture future = channel.connect(
                 new InetSocketAddress("192.168.0.1", 25));
         future.addListener(new ChannelFutureListener() {
-            @Override
+            
         	public void operationComplete(ChannelFuture future) {
                 if (future.isSuccess()) {
                     ByteBuf buffer = Unpooled.copiedBuffer(

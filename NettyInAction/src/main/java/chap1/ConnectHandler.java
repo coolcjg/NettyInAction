@@ -1,4 +1,4 @@
-package com.cjg.abc.NettyInAction;
+package chap1;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
