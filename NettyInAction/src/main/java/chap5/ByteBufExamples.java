@@ -1,5 +1,7 @@
 package chap5;
 
+import static chap5.io.netty.channel.DummyChannelHandlerContext.DUMMY_INSTANCE;
+
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.util.Random;
@@ -10,13 +12,15 @@ import io.netty.buffer.CompositeByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.util.ByteProcessor;
-import static io.netty.channel.DummyChannelHandlerContext.DUMMY_INSTANCE;
 
 public class ByteBufExamples {
 	private final static Random random = new Random();
 	
 	private static final ByteBuf BYTE_BUF_FROM_SOMEWHERE = Unpooled.buffer(1024);
+	
+	private static final Channel CHANNEL_FROM_SOMEWHERE = new NioSocketChannel();
 	
 	private static void handleArray(byte[] array, int offset, int len) {};
 	
@@ -164,7 +168,20 @@ public class ByteBufExamples {
 		ByteBufAllocator allocator2 = ctx.alloc();
 	}
 	
+	//5.15
+	public static void referenceCounting() {
+		Channel channel = CHANNEL_FROM_SOMEWHERE;
+		ByteBufAllocator allocator = channel.alloc();
+		
+		ByteBuf buffer = allocator.directBuffer();
+		assert buffer.refCnt() == 1;
+	}
 	
+	//5.16
+	public static void releaseReferenceCounteObject() {
+		ByteBuf buffer = BYTE_BUF_FROM_SOMEWHERE;
+		boolean released = buffer.release();
+	}
 	
 	public static void main(String[] args) {
 		byteBufWriteRead();
