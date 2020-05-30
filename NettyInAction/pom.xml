@@ -57,9 +57,9 @@
   
     <profiles>
         <profile>
-            <id>ChatServer</id>
+            <id>SecureChatServer</id>
             <properties>
-                <mainClass>chap12.ChatServer</mainClass>
+                <mainClass>chap12.SecureChatServer</mainClass>
                 <port>8889</port>
             </properties>
             <build>

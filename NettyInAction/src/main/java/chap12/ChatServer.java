@@ -33,7 +33,7 @@ public class ChatServer {
 		return new ChatServerInitializer(group);
 	}
 	
-	public void destry() {
+	public void destroy() {
 		if(channel!=null) {
 			channel.close();
 		}
@@ -54,7 +54,7 @@ public class ChatServer {
 		Runtime.getRuntime().addShutdownHook(new Thread() {
 			@Override
 			public void run() {
-				endpoint.destry();
+				endpoint.destroy();
 			}
 		});
 		future.channel().closeFuture().syncUninterruptibly();
